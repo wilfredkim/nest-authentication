@@ -8,7 +8,7 @@ export class UsersService {
         {
           userId: 1,
           username: 'john',
-          password: 'johdoeqqe',
+          password: 'johndoe',
         },
         {
           userId: 2,
