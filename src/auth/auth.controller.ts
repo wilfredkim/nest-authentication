@@ -2,6 +2,8 @@ import { Body, Controller, Get, HttpCode, HttpStatus, Logger, Post,   Request, U
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
 import { Public } from './decorator/public.decorator';
+import { Roles } from './decorator/roles.decorator';
+import { Role } from 'src/role/role.enum';
 
 @Controller('auth')
 export class AuthController {
@@ -18,6 +20,8 @@ export class AuthController {
     }
 
     @Get('testjwt')
+    @Roles(Role.Admin)
+
     testJwt(@Request() req) {
         return req.user;
     }
