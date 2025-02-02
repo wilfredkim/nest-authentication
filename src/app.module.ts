@@ -4,14 +4,18 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { CaslModule } from './casl/casl.module';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { join } from 'path';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { CarModule } from './car/car.module';
+import connectionOptions from './ormconfig';
 
 @Module({
-  imports: [AuthModule, UsersModule, CaslModule
-    /* ThrottlerModule.forRoot([{
-      ttl: 60000,
-      limit: 10,
-    }]) */],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [AuthModule, UsersModule, CaslModule,
+    TypeOrmModule.forRoot(connectionOptions),
+    CarModule],
+    controllers: [AppController],
+    providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
